@@ -413,3 +413,128 @@
 2021-09-06 16:27:55,783 [INFO] ApiDb:280 - User favorites MCUs=[]
 2021-09-06 16:27:55,785 [INFO] ApiDb:276 - Save user favorites file C:\Users\bluph/.stm32cubeide/favorites.boards.txt: 1 item(s)
 2021-09-06 16:27:55,786 [INFO] ApiDb:280 - User favorites Boards=[NUCLEO-F446RE]
+2021-09-06 18:52:45,968 [INFO] MainUpdater:2671 - connection check result : 10
+2021-09-06 18:52:45,969 [INFO] McuFinderGlobals:52 - Set McuFinderConnectedMode to true
+2021-09-06 18:52:48,540 [INFO] ServerAccessManage:362 - Download File mcusAds.json._tmp_
+2021-09-06 18:52:48,716 [INFO] LoadUrlFilesThread:145 - End of LoadUrlFiles Thread
+2021-09-06 18:52:49,095 [INFO] ServerAccessManage:362 - Download File mcusDocs.json._tmp_
+2021-09-06 18:52:49,406 [INFO] LoadUrlFilesThread:145 - End of LoadUrlFiles Thread
+2021-09-06 18:52:49,637 [INFO] ServerAccessManage:362 - Download File mcusFeaturesAndDescription.json._tmp_
+2021-09-06 18:52:52,366 [INFO] LoadUrlFilesThread:145 - End of LoadUrlFiles Thread
+2021-09-06 18:52:52,612 [INFO] ServerAccessManage:362 - Download File boardsDocs.json._tmp_
+2021-09-06 18:52:52,942 [INFO] LoadUrlFilesThread:145 - End of LoadUrlFiles Thread
+2021-09-06 18:52:53,190 [INFO] ServerAccessManage:362 - Download File boards.json._tmp_
+2021-09-06 18:52:53,547 [INFO] LoadUrlFilesThread:145 - End of LoadUrlFiles Thread
+2021-09-06 18:52:55,696 [INFO] ServerAccessManage:362 - Download File cube-finder-db.zip
+2021-09-06 18:53:01,999 [INFO] FileExtend:235 - Unzip File : cube-finder-db.zip
+2021-09-06 18:53:01,999 [INFO] FileExtend:250 - Standard Zip Deflate
+2021-09-06 18:53:02,570 [INFO] LoadUrlFilesThread:145 - End of LoadUrlFiles Thread
+2021-09-06 18:53:03,083 [INFO] ServerAccessManage:362 - Download File crdb.zip
+2021-09-06 18:53:03,466 [INFO] FileExtend:235 - Unzip File : crdb.zip
+2021-09-06 18:53:03,467 [INFO] FileExtend:250 - Standard Zip Deflate
+2021-09-06 18:53:03,648 [INFO] LoadUrlFilesThread:145 - End of LoadUrlFiles Thread
+2021-09-06 18:53:03,933 [INFO] ServerAccessManage:362 - Download File tutoVideoDB.zip
+2021-09-06 18:53:04,086 [INFO] FileExtend:235 - Unzip File : tutoVideoDB.zip
+2021-09-06 18:53:04,087 [INFO] FileExtend:250 - Standard Zip Deflate
+2021-09-06 18:53:04,249 [INFO] LoadUrlFilesThread:145 - End of LoadUrlFiles Thread
+2021-09-06 18:53:04,250 [INFO] DbMcusAds:47 - JSON generation date=Wed Aug 18 16:24:26 EET 2021 (1629296666117)
+2021-09-06 18:53:04,265 [INFO] DbMcusDocs:143 - JSON generation date=Mon Jun 07 10:53:21 EET 2021 (1623056001)
+2021-09-06 18:53:04,599 [INFO] DbMcusDocs:79 - Found 669 MCUs documents
+2021-09-06 18:53:04,601 [INFO] ApiDb:276 - Save user favorites file C:\Users\bluph/.stm32cubeide/favorites.mcus.txt: 0 item(s)
+2021-09-06 18:53:04,601 [INFO] ApiDb:280 - User favorites MCUs=[]
+2021-09-06 18:53:04,601 [INFO] DbMcusXml:100 - Load MCU database from C:\ST\STM32CubeIDE_1.7.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.3.0.202107141111\\db\/mcu/families.xml
+2021-09-06 18:53:05,460 [INFO] DbMcusJson:93 - JSON generation date=Mon Jun 07 10:53:21 EET 2021 (1623056001)
+2021-09-06 18:53:06,055 [INFO] DbMcus:175 - Found 1951 MCUs (1903 are supported by CubeMX, 1903 are visible in CubeMX)
+2021-09-06 18:53:06,055 [INFO] ApiDb:251 - Load user favorites file C:\Users\bluph/.stm32cubeide/favorites.mcus.txt: 0 item(s)
+2021-09-06 18:53:06,056 [INFO] ApiDb:255 - User favorites MCUs=[]
+2021-09-06 18:53:06,056 [INFO] DbMcus:187 - Set 0 / 0 favorites MCUs
+2021-09-06 18:53:06,116 [INFO] DbBoardsDocs:143 - JSON generation date=Tue Jun 01 07:52:40 EET 2021 (1622526760)
+2021-09-06 18:53:06,151 [INFO] DbBoardsDocs:79 - Found 193 boards documents
+2021-09-06 18:53:06,153 [INFO] ApiDb:276 - Save user favorites file C:\Users\bluph/.stm32cubeide/favorites.boards.txt: 1 item(s)
+2021-09-06 18:53:06,154 [INFO] ApiDb:280 - User favorites Boards=[NUCLEO-F446RE]
+2021-09-06 18:53:06,165 [INFO] DbBoardsPdsc:90 - Found 25 items
+2021-09-06 18:53:06,177 [INFO] DbBoardsPdsc:90 - Found 9 items
+2021-09-06 18:53:06,193 [INFO] DbBoardsPdsc:90 - Found 33 items
+2021-09-06 18:53:06,203 [INFO] DbBoardsPdsc:90 - Found 1 items
+2021-09-06 18:53:06,220 [INFO] DbBoardsPdsc:90 - Found 48 items
+2021-09-06 18:53:06,246 [INFO] DbBoardsPdsc:90 - Found 43 items
+2021-09-06 18:53:06,252 [INFO] DbBoardsPdsc:90 - Found 2 items
+2021-09-06 18:53:06,260 [INFO] DbBoardsPdsc:90 - Found 5 items
+2021-09-06 18:53:06,262 [WARN] DbBoardsPdsc:254 - Board STM32H7B3I-DK: unknown feature type=Audio, name=, username=Audio stereo codec with Headphone Amp (CS42L51-CNZ), n=1
+2021-09-06 18:53:06,262 [WARN] DbBoardsPdsc:254 - Board STM32H735G-DK: unknown feature type=Audio, name=, username=Audio stereo codec with Headphone Amp (WM8994ECS/R), n=1
+2021-09-06 18:53:06,263 [WARN] DbBoardsPdsc:254 - Board STM32H7B3I-EVAL: unknown feature type=Audio, name=, username=Multi-Channel Audio Codec (CS42L51-CNZ), n=1
+2021-09-06 18:53:06,263 [WARN] DbBoardsPdsc:254 - Board STM32H7B3I-EVAL: unknown feature type=Meter, name=, username=Power-metering and Temperature-monitoring with sigma-delta modulators, n=1
+2021-09-06 18:53:06,263 [WARN] DbBoardsPdsc:254 - Board STM32H7B3I-EVAL: unknown feature type=Motor, name=, username=Motor Control, n=1
+2021-09-06 18:53:06,264 [WARN] DbBoardsPdsc:254 - Board STM32U575I-EV: unknown feature type=joystick, name=, username=4-direction joystick with selection button, n=1
+2021-09-06 18:53:06,285 [INFO] DbBoardsJson:86 - JSON generation date=Tue Jun 01 07:52:40 EET 2021 (1622526760)
+2021-09-06 18:53:06,292 [INFO] DbBoards:117 - Found 166 boards (163 are supported by CubeMX)
+2021-09-06 18:53:06,293 [WARN] DbBoards:127 - board B-L462E-CELL1 has no document id list !
+2021-09-06 18:53:06,293 [WARN] DbBoards:127 - board B-L475E-IOT01A2 has no document id list !
+2021-09-06 18:53:06,293 [WARN] DbBoards:127 - board B-U585I-IOT02A has no document id list !
+2021-09-06 18:53:06,293 [WARN] DbBoards:127 - board NUCLEO-G0B1RE has no document id list !
+2021-09-06 18:53:06,293 [WARN] DbBoards:127 - board NUCLEO-H743ZI has no document id list !
+2021-09-06 18:53:06,293 [WARN] DbBoards:127 - board NUCLEO-L4A6ZG has no document id list !
+2021-09-06 18:53:06,293 [WARN] DbBoards:127 - board NUCLEO-U575ZI-Q has no document id list !
+2021-09-06 18:53:06,293 [WARN] DbBoards:127 - board NUCLEO-WB15CC has no document id list !
+2021-09-06 18:53:06,294 [WARN] DbBoards:127 - board NUCLEO-WB55RG has no document id list !
+2021-09-06 18:53:06,294 [WARN] DbBoards:127 - board NUCLEO-WL55JC2 has no document id list !
+2021-09-06 18:53:06,294 [WARN] DbBoards:127 - board P-NUCLEO-WB55-Nucleo has no document id list !
+2021-09-06 18:53:06,294 [WARN] DbBoards:127 - board P-NUCLEO-WB55-USBDongle has no document id list !
+2021-09-06 18:53:06,294 [WARN] DbBoards:127 - board STEVAL-BFA001V1B has no document id list !
+2021-09-06 18:53:06,294 [WARN] DbBoards:127 - board STEVAL-BFA001V2B has no document id list !
+2021-09-06 18:53:06,294 [WARN] DbBoards:127 - board STEVAL-IDP005V1 has no document id list !
+2021-09-06 18:53:06,294 [WARN] DbBoards:127 - board STEVAL-IDP005V2 has no document id list !
+2021-09-06 18:53:06,294 [WARN] DbBoards:127 - board STEVAL-MKSBOX1V1 has no document id list !
+2021-09-06 18:53:06,294 [WARN] DbBoards:127 - board STEVAL-STWINKT1 has no document id list !
+2021-09-06 18:53:06,294 [WARN] DbBoards:127 - board STEVAL-STWINKT1B has no document id list !
+2021-09-06 18:53:06,294 [WARN] DbBoards:127 - board STM32F401C-DISCO has no document id list !
+2021-09-06 18:53:06,294 [WARN] DbBoards:127 - board STM32F769I-DISC1 has no document id list !
+2021-09-06 18:53:06,294 [WARN] DbBoards:127 - board STM32G0C1E-EV has no document id list !
+2021-09-06 18:53:06,294 [WARN] DbBoards:127 - board STM32G474E-EVAL1 has no document id list !
+2021-09-06 18:53:06,295 [WARN] DbBoards:127 - board STM32H743I-EVAL2 has no document id list !
+2021-09-06 18:53:06,295 [WARN] DbBoards:127 - board STM32H747I-DISC1 has no document id list !
+2021-09-06 18:53:06,295 [WARN] DbBoards:127 - board STM32H753I-EVAL2 has no document id list !
+2021-09-06 18:53:06,295 [WARN] DbBoards:127 - board STM32L-DISCOVERY has no document id list !
+2021-09-06 18:53:06,295 [WARN] DbBoards:127 - board STM32MP157A-DK1 has no document id list !
+2021-09-06 18:53:06,295 [WARN] DbBoards:127 - board STM32MP157D-DK1 has no document id list !
+2021-09-06 18:53:06,295 [WARN] DbBoards:127 - board STM32MP157D-EV1 has no document id list !
+2021-09-06 18:53:06,295 [WARN] DbBoards:127 - board STM32MP157F-DK2 has no document id list !
+2021-09-06 18:53:06,295 [WARN] DbBoards:127 - board STM32MP157F-EV1 has no document id list !
+2021-09-06 18:53:06,295 [WARN] DbBoards:127 - board STM32U575I-EV has no document id list !
+2021-09-06 18:53:06,295 [WARN] DbBoards:127 - board STM32WB5MM-DK has no document id list !
+2021-09-06 18:53:08,332 [INFO] ApiDb:251 - Load user favorites file C:\Users\bluph/.stm32cubeide/favorites.boards.txt: 1 item(s)
+2021-09-06 18:53:08,333 [INFO] ApiDb:255 - User favorites Boards=[NUCLEO-F446RE]
+2021-09-06 18:53:08,333 [INFO] DbBoards:206 - Set 1 / 1 favorites Boards
+2021-09-06 18:53:08,755 [INFO] ServerAccessManage:362 - Download File 
+2021-09-06 18:53:08,858 [INFO] LoadUrlFilesThread:172 - End of LoadServerUrlFiles without Thread
+2021-09-06 18:53:08,859 [INFO] TargetSelectorAdapter:224 - Refresh data is successful
+2021-09-06 18:53:08,981 [INFO] ApiDb:479 - Connected to CubeFinder SQLite database (C:\Users\bluph\.stmcufinder\plugins\mcufinder\mcu\cube-finder-db.db)
+2021-09-06 18:53:09,621 [INFO] DbExamplesSqlite:411 - Ignored 49 examples not supported by CubeIDE
+2021-09-06 18:53:09,622 [INFO] DbExamplesSqlite:412 - Found 5419 examples active
+2021-09-06 18:53:09,622 [INFO] DbExamplesSqlite:413 - Found 0 examples obsolete
+2021-09-06 18:53:09,622 [INFO] DbExamplesSqlite:414 - Found 0 examples under development
+2021-09-06 18:53:09,622 [INFO] DbExamplesSqlite:415 - Found 110 examples not building
+2021-09-06 18:53:09,647 [INFO] DbExamplesSqlite:108 - CubeFinder database Data Model version=2.1
+2021-09-06 18:53:09,648 [INFO] DbExamplesSqlite:109 - CubeFinder database Configuration version=3.0.11
+2021-09-06 18:53:09,648 [INFO] DbExamplesSqlite:110 - CubeFinder database generation date=2021-08-20 (1629453029)
+2021-09-06 18:53:09,648 [INFO] DbExamplesSqlite:111 - CubeFinder database FW Pack versions=[STM32Cube_FW_F4_V1.26.2, STM32Cube_FW_F7_V1.16.1, STM32Cube_FW_G0_V1.5.0, STM32Cube_FW_G4_V1.4.0, STM32Cube_FW_H7_V1.9.0, STM32Cube_FW_L5_V1.4.0, STM32Cube_FW_U5_V1.0.0, STM32Cube_FW_WB_V1.12.1, STM32Cube_FW_WL_V1.1.0, X-CUBE-ALS_V1.0.1, X-CUBE-AZRTOS-H7_V1.1.0, X-CUBE-BLE1_V6.2.0, X-CUBE-BLE2_V3.2.1, X-CUBE-EEPRMA1_V3.1.0, X-CUBE-GNSS1_V5.2.0, X-CUBE-NFC4_V2.0.3, X-CUBE-SFXS2LP1_V3.1.0]
+2021-09-06 18:53:09,649 [INFO] DbExamples:130 - Found 5480 examples
+2021-09-06 18:53:10,392 [ERROR] DbExamples:206 - Found 338 examples with invalid data (board or MCU)
+2021-09-06 18:53:10,392 [INFO] DbExamples:222 - Found 70 boards with related examples
+2021-09-06 18:53:10,403 [INFO] DbExamples:235 - Found 59 MCUs with related examples
+2021-09-06 18:53:10,420 [INFO] ApiDb:242 - User favorites file not found: C:\Users\bluph/.stm32cubeide/favorites.examples.txt
+2021-09-06 18:53:10,420 [INFO] DbExamples:256 - Set 0 / 0 favorites Examples
+2021-09-06 18:53:10,491 [INFO] McuFinderGlobals:52 - Set McuFinderConnectedMode to false
+2021-09-06 18:53:10,540 [INFO] CrossSelectorPresenter:1330 - Cross Selector saved comparison directory: C:\Users\bluph\.stmcufinder\plugins\mcufinder\mcu\cs_comparisons_mx
+2021-09-06 18:53:10,542 [INFO] MultiScanPanel:197 - Auto-refresh data requested => check proxy status ongoing
+2021-09-06 18:53:10,542 [INFO] MultiScanPanel:201 - Proxy status is invalid
+2021-09-06 18:53:10,542 [INFO] FinderPluginLoader:87 - Searching for filters in installed packs
+2021-09-06 18:53:10,852 [INFO] DetailPanel:309 - Set advertising image to C:/Users/bluph/STM32Cube/Repository/\en.prom_STM32U5_PSA-SESIP_LV3_0821.png
+2021-09-06 18:53:21,097 [INFO] MultiScanPanel:197 - Auto-refresh data requested => check proxy status ongoing
+2021-09-06 18:53:21,098 [INFO] MultiScanPanel:201 - Proxy status is invalid
+2021-09-06 18:53:21,164 [INFO] DetailPanel:309 - Set advertising image to C:/Users/bluph/STM32Cube/Repository/\en.prom_STM32U5_PSA-SESIP_LV3_0821.png
+2021-09-06 18:53:49,812 [INFO] McuFinderGlobals:52 - Set McuFinderConnectedMode to true
+2021-09-06 18:53:49,814 [INFO] ApiDb:276 - Save user favorites file C:\Users\bluph/.stm32cubeide/favorites.mcus.txt: 0 item(s)
+2021-09-06 18:53:49,814 [INFO] ApiDb:280 - User favorites MCUs=[]
+2021-09-06 18:53:49,815 [INFO] ApiDb:276 - Save user favorites file C:\Users\bluph/.stm32cubeide/favorites.boards.txt: 1 item(s)
+2021-09-06 18:53:49,816 [INFO] ApiDb:280 - User favorites Boards=[NUCLEO-F446RE]
