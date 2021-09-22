@@ -1,0 +1,68 @@
+/*
+ * STM32F4xx_gpio.h
+ *
+ *  Created on: Sep 17, 2021
+ *      Author: Alpha_Arslan
+ */
+
+#ifndef INC_STM32F466XX_GPIO_DRIVER_H_
+#define INC_STM32F466XX_GPIO_DRIVER_H_
+
+#include"stm32f466xx.h"
+
+/*
+ * GPIO pin configuration structure
+ */
+typedef struct{
+	uint8_t	PinNumber;
+	uint8_t	PinMode;
+	uint8_t	PinSpeed;
+	uint8_t	PinPuPdControl;
+	uint8_t	PinOPType;
+	uint8_t	PinAltFunMode;
+}DRV_GPIO_PinConfig_t;
+
+
+/*
+ * GPIO pin handler structure
+ */
+typedef struct{
+	HAL_GPIO_RegDef_t		*pGPIOx;		/*!< GPIO port of the pin >*/
+	DRV_GPIO_pinConfig_t	PinConfig;		/*!< Config. Structure of the pin >*/
+}DRV_GPIO_PinHandle_t;
+
+
+
+/****************************************
+ * 		APIs Supported by this driver
+ ****************************************/
+
+/*
+ * Peripheral Clock Handling
+ */
+void DRV_GPIO_PCLKControl(void);
+
+/*
+ * Initialization and De-initialization
+ */
+void DRV_GPIO_Init(void);
+void DRV_GPIO_DeInit(void);
+
+/*
+ * Data Read Write
+ */
+void DRV_GPIO_PinRead(void);
+void DRV_GPIO_PortRead(void);
+void DRV_GPIO_PinWrite(void);
+void DRV_GPIO_PortWrite(void);
+void DRV_GPIO_PinToggle(void);
+
+/*
+ * Interrupt Handling
+ */
+void DRV_GPIO_IRQConfig(void);
+void DRV_GPIO_IRQHandle(void);
+
+
+
+#endif /* INC_STM32F466XX_GPIO_DRIVER_H_ */

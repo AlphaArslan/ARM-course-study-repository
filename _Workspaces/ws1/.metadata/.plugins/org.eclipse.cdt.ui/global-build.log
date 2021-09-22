@@ -1,34 +1,29 @@
-19:18:48 **** Build of configuration Debug for project 002_SampleApp ****
+03:23:26 **** Build of configuration Debug for project STM32F4xx_drivers ****
 make -j8 all 
+arm-none-eabi-gcc "../drivers/src/stm32f466xx_gpio_driver.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workplace/dev/Udemy Arm Course repo/ARM-course-study-repository/_Workspaces/ws1/STM32F4xx_drivers/drivers/inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"drivers/src/stm32f466xx_gpio_driver.d" -MT"drivers/src/stm32f466xx_gpio_driver.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "drivers/src/stm32f466xx_gpio_driver.o"
 arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f446retx.d" -MT"Startup/startup_stm32f446retx.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Startup/startup_stm32f446retx.o" "../Startup/startup_stm32f446retx.s"
-arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
-arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/syscalls.o"
-arm-none-eabi-gcc "../Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/sysmem.d" -MT"Src/sysmem.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/sysmem.o"
-arm-none-eabi-gcc -o "002_SampleApp.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Workplace\dev\Udemy Arm Course repo\ARM-course-study-repository\_Workspaces\ws1\002_SampleApp\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="002_SampleApp.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: 002_SampleApp.elf
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workplace/dev/Udemy Arm Course repo/ARM-course-study-repository/_Workspaces/ws1/STM32F4xx_drivers/drivers/inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workplace/dev/Udemy Arm Course repo/ARM-course-study-repository/_Workspaces/ws1/STM32F4xx_drivers/drivers/inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/syscalls.o"
+arm-none-eabi-gcc "../Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workplace/dev/Udemy Arm Course repo/ARM-course-study-repository/_Workspaces/ws1/STM32F4xx_drivers/drivers/inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/sysmem.d" -MT"Src/sysmem.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/sysmem.o"
+../drivers/src/stm32f466xx_gpio_driver.c: In function 'DRV_GPIO_PinRead':
+../drivers/src/stm32f466xx_gpio_driver.c:87:1: warning: control reaches end of non-void function [-Wreturn-type]
+   87 | }
+      | ^
+../drivers/src/stm32f466xx_gpio_driver.c: In function 'DRV_GPIO_PortRead':
+../drivers/src/stm32f466xx_gpio_driver.c:105:1: warning: control reaches end of non-void function [-Wreturn-type]
+  105 | }
+      | ^
+arm-none-eabi-gcc -o "STM32F4xx_drivers.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Workplace\dev\Udemy Arm Course repo\ARM-course-study-repository\_Workspaces\ws1\STM32F4xx_drivers\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F4xx_drivers.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F4xx_drivers.elf
  
-arm-none-eabi-size   002_SampleApp.elf 
-arm-none-eabi-objdump -h -S  002_SampleApp.elf  > "002_SampleApp.list"
-arm-none-eabi-objcopy  -O binary  002_SampleApp.elf  "002_SampleApp.bin"
+arm-none-eabi-size   STM32F4xx_drivers.elf 
+arm-none-eabi-objdump -h -S  STM32F4xx_drivers.elf  > "STM32F4xx_drivers.list"
+arm-none-eabi-objcopy  -O binary  STM32F4xx_drivers.elf  "STM32F4xx_drivers.bin"
    text	   data	    bss	    dec	    hex	filename
-   6684	    180	   1596	   8460	   210c	002_SampleApp.elf
+    704	      8	   1568	   2280	    8e8	STM32F4xx_drivers.elf
 Finished building: default.size.stdout
  
-Finished building: 002_SampleApp.list
-Finished building: 002_SampleApp.bin
+Finished building: STM32F4xx_drivers.bin
+Finished building: STM32F4xx_drivers.list
  
- 
-19:19:01 **** Incremental Build of configuration Debug for project 001_HelloWorld ****
-make -j8 all 
-arm-none-eabi-size   001_HelloWorld.elf 
-   text	   data	    bss	    dec	    hex	filename
-   3688	    108	   1596	   5392	   1510	001_HelloWorld.elf
-Finished building: default.size.stdout
- 
-19:19:26 **** Incremental Build of configuration Debug for project 002_SampleApp ****
-make -j8 all 
-arm-none-eabi-size   002_SampleApp.elf 
-   text	   data	    bss	    dec	    hex	filename
-   6684	    180	   1596	   8460	   210c	002_SampleApp.elf
-Finished building: default.size.stdout
  
