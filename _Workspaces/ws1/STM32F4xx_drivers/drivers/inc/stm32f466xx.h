@@ -47,11 +47,15 @@
 #define		HAL_GPIOG_BASEADDR		0x40021800UL
 #define		HAL_GPIOH_BASEADDR		0x40021C00UL
 
+// RCC
+#define		HAL_RCC_BASEADDR		0x40023800UL
+
 
 /**************************************************/
 
+
 /*
- * Peripherals register structures definition
+ * Peripherals register structures definition and macros
  */
 // GPIO
 typedef struct{
@@ -68,12 +72,59 @@ typedef struct{
 
 }HAL_GPIO_RegDef_t;
 
+// 98.02.21
+
+// RCC
+typedef struct{
+	__vo uint32_t 	CR;
+	__vo uint32_t 	PLL_CFGR;
+	__vo uint32_t 	CFGR;
+	__vo uint32_t 	CIR;
+	__vo uint32_t 	AHB1RSTR;
+	__vo uint32_t 	AHB2RSTR;
+	__vo uint32_t 	AHB3RSTR;
+	__vo uint32_t 	_R0;
+	__vo uint32_t	APB1RSTR;
+	__vo uint32_t 	APB2RSTR;
+	__vo uint32_t 	_R1;
+	__vo uint32_t 	_R2;
+	__vo uint32_t 	AHB1ENR;
+	__vo uint32_t 	AHB2ENR;
+	__vo uint32_t 	AHB3ENR;
+	__vo uint32_t 	_R4;
+	__vo uint32_t 	APB1ENR;
+	__vo uint32_t 	APB2ENR;
+	__vo uint32_t 	_R5;
+	__vo uint32_t 	_R6;
+	__vo uint32_t 	AHB1_LPENR;
+	__vo uint32_t 	AHB2_LPENR;
+	__vo uint32_t 	AHB3_LPENR;
+	__vo uint32_t 	_R7;
+	__vo uint32_t 	APB1_LPENR;
+	__vo uint32_t 	APB2_LPENR;
+	__vo uint32_t 	_R8;
+	__vo uint32_t 	_R9;
+	__vo uint32_t 	BDCR;
+	__vo uint32_t 	CSR;
+	__vo uint32_t 	_R10;
+	__vo uint32_t 	_R11;
+	__vo uint32_t 	SS_CGR;
+	__vo uint32_t 	PLLI2_SCFGR;
+	__vo uint32_t 	PLL_SAI_CFGR;
+	__vo uint32_t	DCK_CFGR;
+	__vo uint32_t	CK_GATENR;
+	__vo uint32_t	DCK_CFGR2;
+
+}HAL_RCC_RegDef_t;
+
 /**************************************************/
+
+
 
 /*
  * Peripheral Definition
  */
-
+// GPIO
 #define		HAL_GPIOA		((HAL_GPIO_RegDef_t*) HAL_GPIOA_BASEADDR )
 #define		HAL_GPIOB		((HAL_GPIO_RegDef_t*) HAL_GPIOB_BASEADDR )
 #define		HAL_GPIOC		((HAL_GPIO_RegDef_t*) HAL_GPIOC_BASEADDR )
@@ -83,7 +134,47 @@ typedef struct{
 #define		HAL_GPIOG		((HAL_GPIO_RegDef_t*) HAL_GPIOG_BASEADDR )
 #define		HAL_GPIOH		((HAL_GPIO_RegDef_t*) HAL_GPIOH_BASEADDR )
 
+// RCC
+#define 	HAL_RCC			((HAL_RCC_RegDef_t*) HAL_RCC_BASEADDR )
 /**************************************************/
 
+/*
+ * Peripheral clock control macros
+ */
+// GPIO
+#define 	HAL_GPIOA_PCLK_En()		( HAL_RCC->AHB1ENR |= (1 << 0) )
+#define 	HAL_GPIOB_PCLK_En()		( HAL_RCC->AHB1ENR |= (1 << 1) )
+#define 	HAL_GPIOC_PCLK_En()		( HAL_RCC->AHB1ENR |= (1 << 2) )
+#define 	HAL_GPIOD_PCLK_En()		( HAL_RCC->AHB1ENR |= (1 << 3) )
+#define 	HAL_GPIOE_PCLK_En()		( HAL_RCC->AHB1ENR |= (1 << 4) )
+#define 	HAL_GPIOF_PCLK_En()		( HAL_RCC->AHB1ENR |= (1 << 5) )
+#define 	HAL_GPIOG_PCLK_En()		( HAL_RCC->AHB1ENR |= (1 << 6) )
+#define 	HAL_GPIOH_PCLK_En()		( HAL_RCC->AHB1ENR |= (1 << 7) )
+#define 	HAL_GPIOA_PCLK_Di()		( HAL_RCC->AHB1ENR &= ~(1 << 0) )
+#define 	HAL_GPIOB_PCLK_Di()		( HAL_RCC->AHB1ENR &= ~(1 << 1) )
+#define 	HAL_GPIOC_PCLK_Di()		( HAL_RCC->AHB1ENR &= ~(1 << 2) )
+#define 	HAL_GPIOD_PCLK_Di()		( HAL_RCC->AHB1ENR &= ~(1 << 3) )
+#define 	HAL_GPIOE_PCLK_Di()		( HAL_RCC->AHB1ENR &= ~(1 << 4) )
+#define 	HAL_GPIOF_PCLK_Di()		( HAL_RCC->AHB1ENR &= ~(1 << 5) )
+#define 	HAL_GPIOG_PCLK_Di()		( HAL_RCC->AHB1ENR &= ~(1 << 6) )
+#define 	HAL_GPIOH_PCLK_Di()		( HAL_RCC->AHB1ENR &= ~(1 << 7) )
+
+
+/**************************************************/
+
+/*
+ * Peripheral reset macros
+ */
+// GPIO
+#define 	HAL_GPIOA_RST()		do{ HAL_RCC->AHB1RSTR |= (1<<0); HAL_RCC->AHB1RSTR &= ~(1<<0);}while(0);
+#define 	HAL_GPIOB_RST()		do{ HAL_RCC->AHB1RSTR |= (1<<1); HAL_RCC->AHB1RSTR &= ~(1<<1);}while(0);
+#define 	HAL_GPIOC_RST()		do{ HAL_RCC->AHB1RSTR |= (1<<2); HAL_RCC->AHB1RSTR &= ~(1<<2);}while(0);
+#define 	HAL_GPIOD_RST()		do{ HAL_RCC->AHB1RSTR |= (1<<3); HAL_RCC->AHB1RSTR &= ~(1<<3);}while(0);
+#define 	HAL_GPIOE_RST()		do{ HAL_RCC->AHB1RSTR |= (1<<4); HAL_RCC->AHB1RSTR &= ~(1<<4);}while(0);
+#define 	HAL_GPIOF_RST()		do{ HAL_RCC->AHB1RSTR |= (1<<5); HAL_RCC->AHB1RSTR &= ~(1<<5);}while(0);
+#define 	HAL_GPIOG_RST()		do{ HAL_RCC->AHB1RSTR |= (1<<6); HAL_RCC->AHB1RSTR &= ~(1<<6);}while(0);
+#define 	HAL_GPIOH_RST()		do{ HAL_RCC->AHB1RSTR |= (1<<7); HAL_RCC->AHB1RSTR &= ~(1<<7);}while(0);
+
+/**************************************************/
 
 #endif /* INC_STM32F466XX_H_ */
