@@ -47,8 +47,6 @@ void DRV_GPIO_PCLKControl(HAL_GPIO_RegDef_t* pGPIOx, uint8_t En_Di){
 }
 
 
-
-
 /**********************************************
  * @fn			-	DRV_GPIO_PinInit
  *
@@ -60,7 +58,7 @@ void DRV_GPIO_PCLKControl(HAL_GPIO_RegDef_t* pGPIOx, uint8_t En_Di){
  *
  * @return		-	none
  *
- * @Note		-	none
+ * @Note		-	Enable the peripheral clock first
  **********************************************/
 void DRV_GPIO_PinInit(DRV_GPIO_PinHandle_t* pGPIO_PinHandle){
 
@@ -81,7 +79,27 @@ void DRV_GPIO_PinInit(DRV_GPIO_PinHandle_t* pGPIO_PinHandle){
 
 	}else{
 		// interrupt modes
-		// will be coded later
+		// configure the falling/rising trigger selection
+		if(pGPIO_PinHandle->PinConfig.PinMode == GPIO_MODE_IT_FT){
+			HAL_EXTI->FTSR |= (1 << pGPIO_PinHandle->PinConfig.PinNumber); // set falling selection
+			HAL_EXTI->RTSR &= ~(1 << pGPIO_PinHandle->PinConfig.PinNumber);// clear rising selection
+		}else if(pGPIO_PinHandle->PinConfig.PinMode == GPIO_MODE_IT_RT){
+			HAL_EXTI->RTSR |= (1 << pGPIO_PinHandle->PinConfig.PinNumber); // set rising selection
+			HAL_EXTI->FTSR &= ~(1 << pGPIO_PinHandle->PinConfig.PinNumber);// clear falling selection
+		}else if(pGPIO_PinHandle->PinConfig.PinMode == GPIO_MODE_IT_FRT){
+			HAL_EXTI->FTSR |= (1 << pGPIO_PinHandle->PinConfig.PinNumber); // set falling selection
+			HAL_EXTI->RTSR |= (1 << pGPIO_PinHandle->PinConfig.PinNumber); // set rising selection
+		}
+
+		// select the GPIO port in SYSCFG
+		uint8_t reg_select = pGPIO_PinHandle->PinConfig.PinNumber / 4;
+		uint8_t shift = (pGPIO_PinHandle->PinConfig.PinNumber % 4) * 4;
+		uint32_t port_code = HAL_GPIOX_CODE(pGPIO_PinHandle->pGPIOx);
+		HAL_SYSCFG->EXTI_CR[reg_select] &= ~(0xF << shift);			// clear the respective bits
+		HAL_SYSCFG->EXTI_CR[reg_select] |= (port_code << shift);	// set the respective bits
+
+		// enable the interrupt on the EXTI line using IMR
+		HAL_EXTI->IMR |= (1 << pGPIO_PinHandle->PinConfig.PinNumber);
 	}
 
 
@@ -89,8 +107,7 @@ void DRV_GPIO_PinInit(DRV_GPIO_PinHandle_t* pGPIO_PinHandle){
 	// shift = 2 * pGPIO_PinHandle->PinConfig.PinNumber;
 	temp = (pGPIO_PinHandle->PinConfig.PinSpeed << shift);
 	pGPIO_PinHandle->pGPIOx->OSPEEDER &= ~(0x11 << shift);
-	pGPIO_PinHandle->pGPIOx->MODER |= temp;
-
+	pGPIO_PinHandle->pGPIOx->OSPEEDER |= temp;
 
 	// pull up pull down
 	// shift = 2 * pGPIO_PinHandle->PinConfig.PinNumber;
@@ -152,8 +169,6 @@ void DRV_GPIO_PortDeInit(HAL_GPIO_RegDef_t* pGPIOx){
 }
 
 
-
-
 /**********************************************
  * @fn			-	DRV_GPIO_PinRead
  *
@@ -163,12 +178,13 @@ void DRV_GPIO_PortDeInit(HAL_GPIO_RegDef_t* pGPIOx){
  * @param[in]	-	Pin number
  * @param[in]	-
  *
- * @return		-	Input data
+ * @return		-	(uint8_t) 0x0 or 0x1
  *
  * @Note		-	none
  **********************************************/
 uint8_t DRV_GPIO_PinRead(HAL_GPIO_RegDef_t* pGPIOx, uint8_t PinNumber){
-
+	uint8_t value = (uint8_t)( (pGPIOx->IDR >> PinNumber) & 0x1 );
+	return value;
 }
 
 
@@ -181,12 +197,12 @@ uint8_t DRV_GPIO_PinRead(HAL_GPIO_RegDef_t* pGPIOx, uint8_t PinNumber){
  * @param[in]	-
  * @param[in]	-
  *
- * @return		-	Input data
+ * @return		-	(uint16_t) 0x0000 to 0xFFFF
  *
  * @Note		-	none
  **********************************************/
-uint32_t DRV_GPIO_PortRead(HAL_GPIO_RegDef_t* pGPIOx){
-
+uint16_t DRV_GPIO_PortRead(HAL_GPIO_RegDef_t* pGPIOx){
+	return pGPIOx->IDR;
 }
 
 
@@ -204,7 +220,11 @@ uint32_t DRV_GPIO_PortRead(HAL_GPIO_RegDef_t* pGPIOx){
  * @Note		-	none
  **********************************************/
 void DRV_GPIO_PinWrite(HAL_GPIO_RegDef_t* pGPIOx, uint8_t PinNumber, uint8_t data){
-
+	if(data == SET){
+		pGPIOx->ODR |= (1 << PinNumber);
+	}else if(data == RESET){
+		pGPIOx->ODR &= ~(1 << PinNumber);
+	}
 }
 
 
@@ -222,7 +242,7 @@ void DRV_GPIO_PinWrite(HAL_GPIO_RegDef_t* pGPIOx, uint8_t PinNumber, uint8_t dat
  * @Note		-	none
  **********************************************/
 void DRV_GPIO_PortWrite(HAL_GPIO_RegDef_t* pGPIOx, uint16_t data){
-
+	pGPIOx->ODR = data;
 }
 
 
@@ -240,28 +260,56 @@ void DRV_GPIO_PortWrite(HAL_GPIO_RegDef_t* pGPIOx, uint16_t data){
  * @Note		-	none
  **********************************************/
 void DRV_GPIO_PinToggle(HAL_GPIO_RegDef_t* pGPIOx, uint8_t PinNumber){
-
+	pGPIOx->ODR ^= (1 << PinNumber);
 }
 
 
 
 /**********************************************
- * @fn			-	DRV_GPIO_IRQConfig
+ * @fn			-	DRV_GPIO_IRQEnable
  *
- * @brief		-	Config the IRQ
+ * @brief		-	Enables/Disables the IRQ in NVIC
  *
  * @param[in]	-	IRQ number
- * @param[in]	-	IRQ priority
  * @param[in]	-	ENABLE / DISABLE macros
+ * @param[in]	-
  *
  * @return		-	none
  *
  * @Note		-	none
  **********************************************/
-void DRV_GPIO_IRQConfig(uint8_t IRQNumber, uint8_t IRQPriority, uint8_t EN_Di){
-
+void DRV_GPIO_IRQEnable(uint8_t IRQNumber, uint8_t En_Di){
+	// Enable the IRQ
+	if(En_Di == ENABLE){
+		// touch the ISERx registers
+		if(IRQNumber <= 31)		*HAL_NVIC_ISER0 |= (1 << IRQNumber);			// IRQ  0 to 31: ISER0
+		else if(IRQNumber <= 63)	*HAL_NVIC_ISER1 |= (1 << (IRQNumber - 32));	// IRQ 32 to 63: ISER1
+	}else{
+		// touch the ICERx registers
+		if(IRQNumber <= 31)		*HAL_NVIC_ICER0 |= (1 << IRQNumber);			// IRQ  0 to 31: ICER0
+		else if(IRQNumber <= 63)	*HAL_NVIC_ICER1 |= (1 << (IRQNumber - 32));	// IRQ 32 to 63: ICER1
+	}
 }
 
+
+/**********************************************
+ * @fn			-	DRV_GPIO_IRQPriority
+ *
+ * @brief		-	Sets the IRQ priority
+ *
+ * @param[in]	-	IRQ number
+ * @param[in]	-	IRQ priority
+ * @param[in]	-
+ *
+ * @return		-	none
+ *
+ * @Note		-	none
+ **********************************************/
+void DRV_GPIO_IRQPriority(uint8_t IRQNumber, uint8_t priority){
+	uint8_t reg_offset = IRQNumber / 4;
+	uint8_t shift = (IRQNumber % 4) * 8 + (8 - HAL_NVIC_PR_NABITS);
+	*(HAL_NVIC_IPR0 + reg_offset) |= priority << shift;
+}
 
 /**********************************************
  * @fn			-	DRV_GPIO_IRQHandle
@@ -277,5 +325,8 @@ void DRV_GPIO_IRQConfig(uint8_t IRQNumber, uint8_t IRQPriority, uint8_t EN_Di){
  * @Note		-	none
  **********************************************/
 void DRV_GPIO_IRQHandle(uint8_t PinNumber){
-
+	// clear the EXTI PR
+	if(HAL_EXTI->PR & (1 << PinNumber)){
+		HAL_EXTI->PR |= (1 << PinNumber);
+	}
 }

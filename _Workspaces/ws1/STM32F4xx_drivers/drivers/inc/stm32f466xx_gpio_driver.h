@@ -90,7 +90,7 @@ void DRV_GPIO_PortDeInit(HAL_GPIO_RegDef_t* pGPIOx);
  * Data Read Write
  */
 uint8_t 	DRV_GPIO_PinRead(HAL_GPIO_RegDef_t* pGPIOx, uint8_t PinNumber);
-uint32_t 	DRV_GPIO_PortRead(HAL_GPIO_RegDef_t* pGPIOx);
+uint16_t 	DRV_GPIO_PortRead(HAL_GPIO_RegDef_t* pGPIOx);
 void 		DRV_GPIO_PinWrite(HAL_GPIO_RegDef_t* pGPIOx, uint8_t PinNumber, uint8_t data);
 void 		DRV_GPIO_PortWrite(HAL_GPIO_RegDef_t* pGPIOx, uint16_t data);
 void 		DRV_GPIO_PinToggle(HAL_GPIO_RegDef_t* pGPIOx, uint8_t PinNumber);
@@ -98,7 +98,8 @@ void 		DRV_GPIO_PinToggle(HAL_GPIO_RegDef_t* pGPIOx, uint8_t PinNumber);
 /*
  * Interrupt Handling
  */
-void DRV_GPIO_IRQConfig(uint8_t IRQNumber, uint8_t IRQPriority, uint8_t EN_Di);
+void DRV_GPIO_IRQEnable(uint8_t IRQNumber, uint8_t En_Di);
+void DRV_GPIO_IRQPriority(uint8_t IRQNumber, uint8_t priority);
 void DRV_GPIO_IRQHandle(uint8_t PinNumber);
 
 

@@ -1,14 +1,6 @@
-23:47:29 **** Incremental Build of configuration Debug for project STM32F4xx_drivers ****
+05:56:10 **** Incremental Build of configuration Debug for project STM32F4xx_drivers ****
 make -j8 all 
-arm-none-eabi-gcc "../drivers/src/stm32f466xx_gpio_driver.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workplace/dev/Udemy Arm Course repo/ARM-course-study-repository/_Workspaces/ws1/STM32F4xx_drivers/drivers/inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"drivers/src/stm32f466xx_gpio_driver.d" -MT"drivers/src/stm32f466xx_gpio_driver.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "drivers/src/stm32f466xx_gpio_driver.o"
-../drivers/src/stm32f466xx_gpio_driver.c: In function 'DRV_GPIO_PinRead':
-../drivers/src/stm32f466xx_gpio_driver.c:172:1: warning: control reaches end of non-void function [-Wreturn-type]
-  172 | }
-      | ^
-../drivers/src/stm32f466xx_gpio_driver.c: In function 'DRV_GPIO_PortRead':
-../drivers/src/stm32f466xx_gpio_driver.c:190:1: warning: control reaches end of non-void function [-Wreturn-type]
-  190 | }
-      | ^
+arm-none-eabi-gcc "../Src/005button_interrupt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workplace/dev/Udemy Arm Course repo/ARM-course-study-repository/_Workspaces/ws1/STM32F4xx_drivers/drivers/inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/005button_interrupt.d" -MT"Src/005button_interrupt.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/005button_interrupt.o"
 arm-none-eabi-gcc -o "STM32F4xx_drivers.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Workplace\dev\Udemy Arm Course repo\ARM-course-study-repository\_Workspaces\ws1\STM32F4xx_drivers\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F4xx_drivers.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: STM32F4xx_drivers.elf
  
@@ -16,10 +8,96 @@ arm-none-eabi-size   STM32F4xx_drivers.elf
 arm-none-eabi-objdump -h -S  STM32F4xx_drivers.elf  > "STM32F4xx_drivers.list"
 arm-none-eabi-objcopy  -O binary  STM32F4xx_drivers.elf  "STM32F4xx_drivers.bin"
    text	   data	    bss	    dec	    hex	filename
-    704	      8	   1568	   2280	    8e8	STM32F4xx_drivers.elf
+   2512	      8	   1592	   4112	   1010	STM32F4xx_drivers.elf
 Finished building: default.size.stdout
+ 
+Finished building: STM32F4xx_drivers.bin
  
 Finished building: STM32F4xx_drivers.list
  
+05:57:14 **** Incremental Build of configuration Debug for project STM32F4xx_drivers ****
+make -j8 all 
+arm-none-eabi-size   STM32F4xx_drivers.elf 
+   text	   data	    bss	    dec	    hex	filename
+   2512	      8	   1592	   4112	   1010	STM32F4xx_drivers.elf
+Finished building: default.size.stdout
+ 
+05:57:50 **** Incremental Build of configuration Debug for project STM32F4xx_drivers ****
+make -j8 all 
+arm-none-eabi-size   STM32F4xx_drivers.elf 
+   text	   data	    bss	    dec	    hex	filename
+   2512	      8	   1592	   4112	   1010	STM32F4xx_drivers.elf
+Finished building: default.size.stdout
+ 
+06:00:12 **** Incremental Build of configuration Debug for project STM32F4xx_drivers ****
+make -j8 all 
+arm-none-eabi-size   STM32F4xx_drivers.elf 
+   text	   data	    bss	    dec	    hex	filename
+   2512	      8	   1592	   4112	   1010	STM32F4xx_drivers.elf
+Finished building: default.size.stdout
+ 
+06:21:11 **** Incremental Build of configuration Debug for project STM32F4xx_drivers ****
+make -j8 all 
+arm-none-eabi-gcc "../drivers/src/stm32f466xx_gpio_driver.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workplace/dev/Udemy Arm Course repo/ARM-course-study-repository/_Workspaces/ws1/STM32F4xx_drivers/drivers/inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"drivers/src/stm32f466xx_gpio_driver.d" -MT"drivers/src/stm32f466xx_gpio_driver.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "drivers/src/stm32f466xx_gpio_driver.o"
+arm-none-eabi-gcc -o "STM32F4xx_drivers.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Workplace\dev\Udemy Arm Course repo\ARM-course-study-repository\_Workspaces\ws1\STM32F4xx_drivers\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F4xx_drivers.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F4xx_drivers.elf
+ 
+arm-none-eabi-size   STM32F4xx_drivers.elf 
+arm-none-eabi-objdump -h -S  STM32F4xx_drivers.elf  > "STM32F4xx_drivers.list"
+arm-none-eabi-objcopy  -O binary  STM32F4xx_drivers.elf  "STM32F4xx_drivers.bin"
+   text	   data	    bss	    dec	    hex	filename
+   2512	      8	   1592	   4112	   1010	STM32F4xx_drivers.elf
+Finished building: default.size.stdout
+ 
 Finished building: STM32F4xx_drivers.bin
+Finished building: STM32F4xx_drivers.list
+ 
+ 
+06:28:57 **** Incremental Build of configuration Debug for project STM32F4xx_drivers ****
+make -j8 all 
+arm-none-eabi-size   STM32F4xx_drivers.elf 
+   text	   data	    bss	    dec	    hex	filename
+   2512	      8	   1592	   4112	   1010	STM32F4xx_drivers.elf
+Finished building: default.size.stdout
+ 
+06:33:39 **** Incremental Build of configuration Debug for project STM32F4xx_drivers ****
+make -j8 all 
+arm-none-eabi-size   STM32F4xx_drivers.elf 
+   text	   data	    bss	    dec	    hex	filename
+   2512	      8	   1592	   4112	   1010	STM32F4xx_drivers.elf
+Finished building: default.size.stdout
+ 
+06:39:44 **** Incremental Build of configuration Debug for project STM32F4xx_drivers ****
+make -j8 all 
+arm-none-eabi-gcc "../Src/005button_interrupt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workplace/dev/Udemy Arm Course repo/ARM-course-study-repository/_Workspaces/ws1/STM32F4xx_drivers/drivers/inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/005button_interrupt.d" -MT"Src/005button_interrupt.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/005button_interrupt.o"
+arm-none-eabi-gcc -o "STM32F4xx_drivers.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Workplace\dev\Udemy Arm Course repo\ARM-course-study-repository\_Workspaces\ws1\STM32F4xx_drivers\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F4xx_drivers.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F4xx_drivers.elf
+ 
+arm-none-eabi-size   STM32F4xx_drivers.elf 
+arm-none-eabi-objdump -h -S  STM32F4xx_drivers.elf  > "STM32F4xx_drivers.list"
+arm-none-eabi-objcopy  -O binary  STM32F4xx_drivers.elf  "STM32F4xx_drivers.bin"
+   text	   data	    bss	    dec	    hex	filename
+   2528	      8	   1592	   4128	   1020	STM32F4xx_drivers.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F4xx_drivers.bin
+ 
+Finished building: STM32F4xx_drivers.list
+ 
+06:44:04 **** Incremental Build of configuration Debug for project STM32F4xx_drivers ****
+make -j8 all 
+arm-none-eabi-gcc "../Src/005button_interrupt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workplace/dev/Udemy Arm Course repo/ARM-course-study-repository/_Workspaces/ws1/STM32F4xx_drivers/drivers/inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/005button_interrupt.d" -MT"Src/005button_interrupt.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/005button_interrupt.o"
+arm-none-eabi-gcc -o "STM32F4xx_drivers.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Workplace\dev\Udemy Arm Course repo\ARM-course-study-repository\_Workspaces\ws1\STM32F4xx_drivers\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F4xx_drivers.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F4xx_drivers.elf
+ 
+arm-none-eabi-size   STM32F4xx_drivers.elf 
+arm-none-eabi-objdump -h -S  STM32F4xx_drivers.elf  > "STM32F4xx_drivers.list"
+arm-none-eabi-objcopy  -O binary  STM32F4xx_drivers.elf  "STM32F4xx_drivers.bin"
+   text	   data	    bss	    dec	    hex	filename
+   2528	      8	   1592	   4128	   1020	STM32F4xx_drivers.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F4xx_drivers.bin
+ 
+Finished building: STM32F4xx_drivers.list
  

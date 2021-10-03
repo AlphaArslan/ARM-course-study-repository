@@ -10,16 +10,46 @@
 
 #include<stdint.h>
 
-
 /*
  * Generic Definitions
  */
-#define		__vo		volatile
-#define		ENABLE		1
-#define		DISABLE		0
-#define		SET			1
-#define		RESET		0
+#define		__vo				volatile
+#define		ENABLE				1
+#define		DISABLE				0
+#define		SET					1
+#define		RESET				0
+#define		HIGH				1
+#define		LOW					0
+#define		USR_BTN_PRESSED		LOW
 
+
+/*
+ * Cortex-M4 NVIC register Addresses
+ */
+#define		HAL_NVIC_ISER0			((__vo uint32_t*) 0xE000E100UL)
+#define		HAL_NVIC_ISER1			((__vo uint32_t*) 0xE000E104UL)
+#define		HAL_NVIC_ISER2			((__vo uint32_t*) 0xE000E108UL)
+#define		HAL_NVIC_ISER3			((__vo uint32_t*) 0xE000E10CUL)
+#define		HAL_NVIC_ISER4			((__vo uint32_t*) 0xE000E110UL)
+#define		HAL_NVIC_ISER5			((__vo uint32_t*) 0xE000E114UL)
+#define		HAL_NVIC_ISER6			((__vo uint32_t*) 0xE000E118UL)
+#define		HAL_NVIC_ISER7			((__vo uint32_t*) 0xE000E11CUL)
+
+#define		HAL_NVIC_ICER0			((__vo uint32_t*) 0xE000E180UL)
+#define		HAL_NVIC_ICER1			((__vo uint32_t*) 0xE000E184UL)
+#define		HAL_NVIC_ICER2			((__vo uint32_t*) 0xE000E188UL)
+#define		HAL_NVIC_ICER3			((__vo uint32_t*) 0xE000E18CUL)
+#define		HAL_NVIC_ICER4			((__vo uint32_t*) 0xE000E190UL)
+#define		HAL_NVIC_ICER5			((__vo uint32_t*) 0xE000E194UL)
+#define		HAL_NVIC_ICER6			((__vo uint32_t*) 0xE000E198UL)
+#define		HAL_NVIC_ICER7			((__vo uint32_t*) 0xE000E19CUL)
+
+#define		HAL_NVIC_IPR0			((__vo uint32_t*) 0xE000E400UL)
+
+// the number of bits that are not applicable in each section in IPRx
+#define		HAL_NVIC_PR_NABITS		4
+
+/***************************************************/
 
 /*
  * Flash and SRAM base addresses
@@ -47,10 +77,11 @@
 #define		HAL_GPIOG_BASEADDR		0x40021800UL
 #define		HAL_GPIOH_BASEADDR		0x40021C00UL
 
-// RCC
 #define		HAL_RCC_BASEADDR		0x40023800UL
 
+#define		HAL_EXTI_BASEADDR		0x40013C00UL
 
+#define		HAL_SYSCFG_BASEADDR		0x40013800UL
 /**************************************************/
 
 
@@ -117,7 +148,29 @@ typedef struct{
 
 }HAL_RCC_RegDef_t;
 
-/**************************************************/
+// EXTI
+typedef struct{
+	__vo uint32_t	IMR;		// interrupt mask register
+	__vo uint32_t	EMR;		// event mask register
+	__vo uint32_t	RTSR;		// rising trigger selection register
+	__vo uint32_t	FTSR;		// falling trigger selection register
+	__vo uint32_t	SWIER;		// software interrupt event register
+	__vo uint32_t	PR;			// pending register
+
+}HAL_EXTI_RegDef_t;
+
+// SYSCFG
+typedef struct{
+	__vo uint32_t	MEMRMP;		// memory remap
+	__vo uint32_t	PMC;		// peripheral mode configuration
+	__vo uint32_t	EXTI_CR[4];	// EXTI control registers
+	__vo uint32_t	_R[2];
+	__vo uint32_t	CMPCR;		// comparison cell control
+	__vo uint32_t	_R2[2];
+	__vo uint32_t	CFGR;		// configuration
+
+}HAL_SYSCFG_RegDef_t;
+/********************* 98-10-11 *******************/
 
 
 
@@ -134,14 +187,17 @@ typedef struct{
 #define		HAL_GPIOG		((HAL_GPIO_RegDef_t*) HAL_GPIOG_BASEADDR )
 #define		HAL_GPIOH		((HAL_GPIO_RegDef_t*) HAL_GPIOH_BASEADDR )
 
-// RCC
 #define 	HAL_RCC			((HAL_RCC_RegDef_t*) HAL_RCC_BASEADDR )
+
+#define		HAL_EXTI		((HAL_EXTI_RegDef_t*) HAL_EXTI_BASEADDR)
+
+#define		HAL_SYSCFG		((HAL_SYSCFG_RegDef_t*) HAL_SYSCFG_BASEADDR)
+
 /**************************************************/
 
 /*
  * Peripheral clock control macros
  */
-// GPIO
 #define 	HAL_GPIOA_PCLK_En()		( HAL_RCC->AHB1ENR |= (1 << 0) )
 #define 	HAL_GPIOB_PCLK_En()		( HAL_RCC->AHB1ENR |= (1 << 1) )
 #define 	HAL_GPIOC_PCLK_En()		( HAL_RCC->AHB1ENR |= (1 << 2) )
@@ -159,6 +215,8 @@ typedef struct{
 #define 	HAL_GPIOG_PCLK_Di()		( HAL_RCC->AHB1ENR &= ~(1 << 6) )
 #define 	HAL_GPIOH_PCLK_Di()		( HAL_RCC->AHB1ENR &= ~(1 << 7) )
 
+#define		HAL_SYSCFG_PCLK_En()	( HAL_RCC->APB2ENR |= (1 << 14) )
+#define		HAL_SYSCFG_PCLK_Di()	( HAL_RCC->APB2ENR &= ~(1 << 14) )
 
 /**************************************************/
 
@@ -174,6 +232,47 @@ typedef struct{
 #define 	HAL_GPIOF_RST()		do{ HAL_RCC->AHB1RSTR |= (1<<5); HAL_RCC->AHB1RSTR &= ~(1<<5);}while(0);
 #define 	HAL_GPIOG_RST()		do{ HAL_RCC->AHB1RSTR |= (1<<6); HAL_RCC->AHB1RSTR &= ~(1<<6);}while(0);
 #define 	HAL_GPIOH_RST()		do{ HAL_RCC->AHB1RSTR |= (1<<7); HAL_RCC->AHB1RSTR &= ~(1<<7);}while(0);
+
+/**************************************************/
+
+/*
+ * IRQ numbers
+ */
+// EXTI
+#define		HAL_IRQ_NUM_EXTI_0		6
+#define		HAL_IRQ_NUM_EXTI_1		7
+#define		HAL_IRQ_NUM_EXTI_2		8
+#define		HAL_IRQ_NUM_EXTI_3		9
+#define		HAL_IRQ_NUM_EXTI_4		10
+#define		HAL_IRQ_NUM_EXTI_5		23
+#define		HAL_IRQ_NUM_EXTI_6		23
+#define		HAL_IRQ_NUM_EXTI_7		23
+#define		HAL_IRQ_NUM_EXTI_8		23
+#define		HAL_IRQ_NUM_EXTI_9		23
+#define		HAL_IRQ_NUM_EXTI_10		40
+#define		HAL_IRQ_NUM_EXTI_11		40
+#define		HAL_IRQ_NUM_EXTI_12		40
+#define		HAL_IRQ_NUM_EXTI_13		40
+#define		HAL_IRQ_NUM_EXTI_14		40
+#define		HAL_IRQ_NUM_EXTI_15		40
+
+// 2021-05-31
+
+/**************************************************/
+
+
+/*
+ * Extra Macros
+ */
+// return a code from 0 to 6 for GPIOA to GPIOH
+#define		HAL_GPIOX_CODE(x)  ((x == HAL_GPIOA)? 0:\
+								(x == HAL_GPIOB)? 1:\
+								(x == HAL_GPIOC)? 2:\
+								(x == HAL_GPIOD)? 3:\
+								(x == HAL_GPIOE)? 4:\
+								(x == HAL_GPIOF)? 5:\
+								(x == HAL_GPIOG)? 6:\
+								(x == HAL_GPIOH)? 7: -1)
 
 /**************************************************/
 
